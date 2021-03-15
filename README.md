@@ -14,30 +14,45 @@ register_nav_menus( array(
 4) Copy this to your header
 ```
 <div>
-    <nav class="navbar container" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="https://github.com/Poruno/Bulma-Navwalker">
-                <img class="brand-image" src="https://avatars1.githubusercontent.com/u/14240204?s=400&u=8ad776c75e4693d55ced68f8573c5a18ac054fca&v=4"/>
-            </a>
-            <button class="button navbar-burger" data-target="primary-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div class="navbar-menu">
+  
+  <?php wp_nav_menu( array( 
+      'theme_location'    => 'primary_menu',
+      'menu_id'           => 'primary-menu',
+      'depth'             => 0,
+      'container'         => 'div',
+      'container_class'   => 'navbar-start',
+      'items_wrap'        => '%3$s',
+      'walker'            => new Navwalker())
+  ); ?>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <strong>Sign up</strong>
+          </a>
+          <a class="button is-light">
+            Log in
+          </a>
         </div>
-        <?php
-        wp_nav_menu( array(
-            'theme_location'    => 'primary',
-            'depth'             => 0,
-            'container'         => false,
-            // 'items_wrap'     => 'div',
-            'menu_class'        => 'navbar-menu',
-            'menu_id'           => 'primary-menu',
-            'after'             => "</div>",
-            'walker'            => new Navwalker())
-        );
-        ?>
-    </nav>
+      </div>
+    </div>
+  </div>
+</nav>
 </div>
 ```
 5) To make the nav-burgers work add this to the end of the body
